@@ -2,12 +2,36 @@
 * This is for global css usage.
 */
 
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,400,500');
+@import url('https://fonts.googleapis.com/earlyaccess/notosanstc.css');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
 * {
 	box-sizing: border-box;
 }
+
+body,
+input,
+select,
+textarea,
+button {
+	font-family: 'Roboto', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
 
 a {
 	padding: 0;
 	margin: 0;
 	text-decoration: none;
+}
+
+button {
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
 }
