@@ -1,6 +1,6 @@
 import React from 'react';
 import Palette from './components/Palette';
-import seedColors from './seedColors';
+import seedColors from '../models/seedColors';
 
 const App = () => (
     <div>
