@@ -1,7 +1,7 @@
 import { configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 
-// import 'normalize.css';
+import 'normalize.css';
 // import 'global.css';
 // import 'babel-polyfill';
 
