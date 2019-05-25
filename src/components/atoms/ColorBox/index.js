@@ -1,20 +1,23 @@
 import React from 'react'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import styles from './index.module.scss';
 
 const ColorBox = ({ background, name }) => (
-    <div 
-        style={{ background }}
-        className={styles.colorBox}
-    >
-        <div className={styles.boxContainer}>
-            <div className={styles.boxContent}>
-                <span>{name}</span>
+    <CopyToClipboard text={background}>
+        <div 
+            style={{ background }}
+            className={styles.colorBox}
+        >
+            <div className={styles.boxContainer}>
+                <div className={styles.boxContent}>
+                    <span>{name}</span>
+                </div>
+                <button className={styles.copyButton}>Copy</button>
             </div>
-            <button className={styles.copyButton}>Copy</button>
+            <span className={styles.seeMore}>More</span>
         </div>
-        <span className={styles.seeMore}>More</span>
-    </div>
+    </CopyToClipboard>
 )
 
 
