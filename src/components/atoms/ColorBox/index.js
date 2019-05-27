@@ -1,24 +1,56 @@
-import React from 'react'
+import React, { Component } from 'react'
+import classnames from 'classnames';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import styles from './index.module.scss';
 
-const ColorBox = ({ background, name }) => (
-    <CopyToClipboard text={background}>
-        <div 
-            style={{ background }}
-            className={styles.colorBox}
-        >
-            <div className={styles.boxContainer}>
-                <div className={styles.boxContent}>
-                    <span>{name}</span>
+class ColorBox extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            copied: false
+        }
+    }
+
+    onChangeCopy = () => {
+        this.setState({ copied: true }, () => {
+            // 1.5秒後關掉 copyOverlay
+            setTimeout(() => this.setState({ copied: false }), 1500);
+        });
+    }
+
+    render() {
+        const { background, name } = this.props;
+        const { copied} = this.state;
+        return (
+            <CopyToClipboard text={background} onCopy={this.onChangeCopy}>
+                <div 
+                    style={{ background }}
+                    className={styles.colorBox}
+                >
+                    <div style={{ background }} className={classnames(styles.copyOverlay, {
+                        [styles.showOverlay]: copied,
+                    })} />
+                    <div className={classnames(styles.colorMsg, {
+                        [styles.showMsg]: copied,
+                    })}>
+                        <h1>copied!</h1>
+                        <p>{background}</p>
+                    </div>
+                    <div className={styles.boxContainer}>
+                        <div className={styles.boxContent}>
+                            <span>{name}</span>
+                        </div>
+                        <button className={styles.copyButton}>Copy</button>
+                    </div>
+                    <span className={styles.seeMore}>More</span>
                 </div>
-                <button className={styles.copyButton}>Copy</button>
-            </div>
-            <span className={styles.seeMore}>More</span>
-        </div>
-    </CopyToClipboard>
-)
+            </CopyToClipboard>
+        )
+    }
+}
+
+
 
 
 export default ColorBox;
