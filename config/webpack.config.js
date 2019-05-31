@@ -397,6 +397,7 @@ module.exports = function(webpackEnv) {
             // By default we support CSS Modules with the extension .module.css
             {
               test: cssRegex,
+              include: /node_modules\/rc-slider/,
               exclude: cssModuleRegex,
               use: getStyleLoaders({
                 importLoaders: 1,
@@ -424,6 +425,7 @@ module.exports = function(webpackEnv) {
             // extensions .module.scss or .module.sass
             {
               test: sassRegex,
+              include: /node_modules\/rc-slider/,
               exclude: sassModuleRegex,
               use: getStyleLoaders(
                 {

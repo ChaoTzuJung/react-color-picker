@@ -2,6 +2,8 @@
 * This is for global css usage.
 */
 
+@import-normalize;
+
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,400,500');
 @import url('https://fonts.googleapis.com/earlyaccess/notosanstc.css');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
@@ -9,6 +11,11 @@
 
 * {
 	box-sizing: border-box;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
 }
 
 body,

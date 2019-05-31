@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
+// A modern alternative to CSS resets
+import 'normalize.css';
+// Global css setting
+import './global.css';
+
+
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
