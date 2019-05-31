@@ -5,7 +5,7 @@ import generatePalette from 'utils/colorHelper';
 
 const App = () => (
   <div>
-    <Palette {...colorsConfig[4]}/>
+    <Palette palette={generatePalette(colorsConfig[4])} />
   </div>
 )
 
