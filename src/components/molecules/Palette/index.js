@@ -12,13 +12,13 @@ class Palette extends Component {
     }
 
     changeLevel = level => {
-        console.log(level);
         this.setState({ level })
     }
 
     render() {
         const { palette } = this.props;
         const { level } = this.state;
+        console.log(palette);
         return (
             <div className={styles.palette}>
                 {/* Navbar goes here */}
