@@ -33,9 +33,9 @@ class Palette extends Component {
                         <ColorBox background={color[format]} name={color.name} key={color.id} />
                     ))}
                 </div>
-                <footer  className={styles.paletteFooter}>
+                <footer className={styles.paletteFooter}>
                     {paletteName}
-                    <span  className={styles.emoji}>{emoji}</span>
+                    <span className={styles.emoji}>{emoji}</span>
                 </footer>
             </div>
         )
