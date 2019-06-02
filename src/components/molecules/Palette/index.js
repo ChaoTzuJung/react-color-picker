@@ -23,19 +23,20 @@ class Palette extends Component {
     }
 
     render() {
-        const { palette } = this.props;
+        const { palette: { colors, paletteName, emoji } } = this.props;
         const { level, format } = this.state;
         return (
             <div className={styles.palette}>
-                {/* Navbar goes here */}
                 <Navbar level={level} changeLevel={this.changeLevel} selectFormat={this.changeFormat} />
                 <div className={styles.paletteColors}>
-                    {/* Bunch of color box */}
-                    {palette.colors[level].map(color => (
-                        <ColorBox background={color[format]} name={color.name} key={color[format]} />
+                    {colors[level].map(color => (
+                        <ColorBox background={color[format]} name={color.name} key={color.id} />
                     ))}
                 </div>
-                    {/* footer eventually */}
+                <footer  className={styles.paletteFooter}>
+                    {paletteName}
+                    <span  className={styles.emoji}>{emoji}</span>
+                </footer>
             </div>
         )
     }

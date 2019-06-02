@@ -1,7 +1,24 @@
 .palette {
+    // 用 flex 解 可以垂直滑動scroll的問題
+    display: flex;
+    flex-direction: column;
     height: 100vh;
 
     & > .paletteColors {
         height: 90%;
+    }
+
+    & > .paletteFooter {
+        // Navbar 是 6vh 會造成scroll滑動
+        height: 5vh;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-weight: bold;
+
+        & > .emoji {
+            font-size: 24px;
+            margin: 0 16px;
+        }
     }
 }

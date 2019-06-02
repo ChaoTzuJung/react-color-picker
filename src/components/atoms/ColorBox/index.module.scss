@@ -2,7 +2,9 @@
     width: 20%;
     height: 25%;
     margin: 0 auto;
-    display: inline-block;
+    // display: inline-block;
+    // 兩個inline-block元素間存在消不掉的空隙 用 float: left;
+    float: left;
     position: relative;
     cursor: pointer;
 
