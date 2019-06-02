@@ -1,22 +1,57 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
-import styles from './index.module.scss';
+import MiniPalette from 'components/atoms/MiniPalette';
+
+const styles = {
+    paletteList: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        height: '100vh',
+        backgroundColor: 'blue',
+    },
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        width: '50%',
+    },
+    nav: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '100%',
+        color: 'white',
+    },
+    palettes: {
+        display: 'grid',
+        width: '100%',
+        gridTemplateColumns: 'repeat(3, 30%)',
+        gridGap: '5%' 
+    },
+};
 
 class PaletteList extends Component {
 
     render() {
-        const { palettes } = this.props;
+        const { palettes, classes } = this.props;
         return (
-            <div className={styles.paletteList}>
-                <h1>React Color</h1>
-                {palettes.map(palette => (
-                    <p>
-                        <Link to={`/palette/${palette.id}`}>
-                            {palette.paletteName}
-                        </Link>
-                    </p>
-                ))}
+            <div className={classes.paletteList}>
+                <div className={classes.container}>
+                    <nav className={classes.nav}>
+                        <h1>React Colors</h1>
+                    </nav>
+                    <div className={classes.palettes}>
+                        {palettes.map(palette => (
+                            <Link to={`/palette/${palette.id}`}>
+                                <MiniPalette {...palette} />
+                            </Link>
+                        ))}
+                    </div>
+                </div>
             </div>
         )
     }
@@ -24,6 +59,7 @@ class PaletteList extends Component {
 
 PaletteList.propTypes = {
     palettes: PropTypes.array,
+    classes:  PropTypes.object,
 };
 
-export default PaletteList;
+export default withStyles(styles)(PaletteList);
