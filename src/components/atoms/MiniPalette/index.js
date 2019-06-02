@@ -46,7 +46,7 @@ const styles = {
 };
 
 // classes props for HOC withStyles
-const MiniPalette = ({ classes, paletteName, emoji, colors }) => {
+const MiniPalette = ({ classes, paletteName, emoji, colors, goToPalette }) => {
     const miniColorBoxes = colors.map(color => (
         <div
             className={classes.miniColor}
@@ -55,7 +55,7 @@ const MiniPalette = ({ classes, paletteName, emoji, colors }) => {
         />
     ));
     return (
-        <div className={classes.miniPalette}>
+        <div className={classes.miniPalette} onClick={goToPalette}>
             <div className={classes.colors}>
                 {miniColorBoxes}
             </div>
@@ -73,6 +73,7 @@ MiniPalette.propTypes = {
     paletteName: PropTypes.string,
     emoji: PropTypes.string,
     colors: PropTypes.array,
+    goToPalette: PropTypes.func,
 };
 
 export default withStyles(styles)(MiniPalette);
