@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 // Select
 import Select from '@material-ui/core/Select';
@@ -41,7 +42,7 @@ class Navbar extends Component {
         return (
             <header className={styles.navbar}>
                 <div className={styles.logo}>
-                    <a href="#">React Color Picker</a>
+                    <Link to="/">React Color Picker</Link>
                 </div>
                 <div className={styles.sliderContainer}>
                     <span>Level: {level}</span>
