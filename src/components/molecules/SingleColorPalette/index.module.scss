@@ -1,0 +1,10 @@
+.palette {
+    // 用 flex 解 可以垂直滑動scroll的問題
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    & > .paletteColors {
+        height: 90%;
+    }
+}

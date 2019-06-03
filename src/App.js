@@ -10,8 +10,7 @@ import SingleColorPalette from 'components/molecules/SingleColorPalette';
 
 class App extends Component {
   findPalette = id => {
-    const filterPalette = colorsConfig.find(palette => palette.id === id)
-    return filterPalette;
+    return colorsConfig.find(palette => palette.id === id);
   }
 
   render() {
@@ -29,7 +28,14 @@ class App extends Component {
         <Route
           exact
           path="/palette/:paletteId/:colorId"
-          render={() => <SingleColorPalette />}
+          render={routeProps => (
+            <SingleColorPalette
+              colorId={routeProps.match.params.colorId}
+              palette={generatePalette(
+                this.findPalette(routeProps.match.params.paletteId)
+              )}
+            />
+          )}
         />
       </Switch>
     )
