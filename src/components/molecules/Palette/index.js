@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ColorBox from 'components/atoms/ColorBox';
 import Navbar from 'components/molecules/Navbar';
+import PaletteFooter from 'components/organisms/PaletteFooter';
 import styles from './index.module.scss';
 
 class Palette extends Component {
@@ -38,10 +39,7 @@ class Palette extends Component {
                         />
                     ))}
                 </div>
-                <footer className={styles.paletteFooter}>
-                    {paletteName}
-                    <span className={styles.emoji}>{emoji}</span>
-                </footer>
+                <PaletteFooter paletteName={paletteName} emoji={emoji} />
             </div>
         )
     }

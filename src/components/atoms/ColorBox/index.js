@@ -66,7 +66,7 @@ ColorBox.propTypes = {
 };
 
 ColorBox.defaultProps = {
-    showLink: true
+    showLink: true,
 };
 
 export default ColorBox;
