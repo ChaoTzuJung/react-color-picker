@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import chroma from "chroma-js";
 
 import styles from './index.module.scss';
 
@@ -24,6 +25,9 @@ class ColorBox extends Component {
     render() {
         const { background, name, moreUrl, showLink } = this.props;
         const { copied } = this.state;
+        const isDarkColor = chroma(background).luminance() <= 0.08;
+        const isLightColor = chroma(background).luminance() >= 0.7;
+
         return (
             <CopyToClipboard text={background} onCopy={this.onChangeCopy}>
                 <div 
@@ -37,18 +41,22 @@ class ColorBox extends Component {
                         [styles.showMsg]: copied,
                     })}>
                         <h1>copied!</h1>
-                        <p>{background}</p>
+                        <p className={isLightColor ? styles.darkText : undefined}>{background}</p>
                     </div>
                     <div className={styles.boxContainer}>
                         <div className={styles.boxContent}>
-                            <span>{name}</span>
+                            <span className={isDarkColor ? styles.lightText : undefined}>{name}</span>
                         </div>
-                        <button className={styles.copyButton}>Copy</button>
+                        <button className={classnames(styles.copyButton, {
+                            [styles.darkText]: isLightColor
+                        })}>Copy</button>
                     </div>
                     {
                         showLink && (
                             <Link to={moreUrl} onClick={e => e.stopPropagation()}>
-                                <span className={styles.seeMore}>More</span>
+                                <span className={classnames(styles.seeMore, {
+                                    [styles.darkText]: isLightColor
+                                })}>MORE</span>
                             </Link>
                         )
                     }
