@@ -54,11 +54,6 @@
             font-weight: 100;
             font-size: 32px;
         }
-
-        & > .darkText {
-            color: black;
-            opacity: 1;
-        }
     }
 
     & > .showMsg {
@@ -81,10 +76,6 @@
             text-transform: uppercase;
             font-size: 12px;
             margin-bottom: -3.5px;
-
-            & > .lightText {
-                color: white;
-            }
         }
 
 
@@ -98,15 +89,10 @@
             transform: translate(-50%,-50%);
             text-align: center;
             background-color: rgba(255, 255, 255, 0.3);
-            color: #fff;
             font-size: 16px;
             line-height: 30px;
             text-transform: uppercase;
             opacity: 0;
-        }
-
-        & .darkText {
-            color: black;
         }
     }
 
@@ -116,7 +102,6 @@
         right: 0;
         bottom: 0;
         border: none;
-        color: #fff;
         width: 60px;
         height: 30px;
         line-height: 30px;
@@ -124,19 +109,9 @@
         text-transform: uppercase;
     }
 
-    & .darkText {
-        color: black;
-        opacity: 0.6;
-    }
-
     // when hover colorBox copyButton opacity equal to 1
     &:hover .copyButton {
         opacity: 1;
-        transition: 0.5s;
-    }
-
-    &:hover .darkText {
-        opacity: 0.6;
         transition: 0.5s;
     }
 }

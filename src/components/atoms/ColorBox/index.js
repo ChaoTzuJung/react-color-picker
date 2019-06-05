@@ -5,7 +5,23 @@ import classnames from 'classnames';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import chroma from "chroma-js";
 
+import { withStyles } from '@material-ui/styles';
 import styles from './index.module.scss';
+
+const inlineStyles = {
+    copyText: {
+        color: props => chroma(props.background).luminance() >= 0.7 ? "rgba(0,0,0,0.6)" : "white"
+    },
+    seeMoreButton: {
+        color: props => chroma(props.background).luminance() >= 0.7 ? "rgba(0,0,0,0.6)" : "white",
+    },
+    colorName: {
+        color: props => chroma(props.background).luminance() <= 0.08 ? "white" : "black"
+    },
+    copyButton: {
+        color: props => chroma(props.background).luminance() >= 0.7 ? "rgba(0,0,0,0.6)" : "white"
+    }
+};
 
 class ColorBox extends Component {
     constructor(props){
@@ -23,10 +39,8 @@ class ColorBox extends Component {
     }
 
     render() {
-        const { background, name, moreUrl, showLink } = this.props;
+        const { background, name, moreUrl, showLink, classes } = this.props;
         const { copied } = this.state;
-        const isDarkColor = chroma(background).luminance() <= 0.08;
-        const isLightColor = chroma(background).luminance() >= 0.7;
 
         return (
             <CopyToClipboard text={background} onCopy={this.onChangeCopy}>
@@ -41,22 +55,18 @@ class ColorBox extends Component {
                         [styles.showMsg]: copied,
                     })}>
                         <h1>copied!</h1>
-                        <p className={isLightColor ? styles.darkText : undefined}>{background}</p>
+                        <p className={classes.colorName}>{background}</p>
                     </div>
                     <div className={styles.boxContainer}>
                         <div className={styles.boxContent}>
-                            <span className={isDarkColor ? styles.lightText : undefined}>{name}</span>
+                            <span className={classes.colorName}>{name}</span>
                         </div>
-                        <button className={classnames(styles.copyButton, {
-                            [styles.darkText]: isLightColor
-                        })}>Copy</button>
+                        <button className={classnames(styles.copyButton, classes.copyButton)}>Copy</button>
                     </div>
                     {
                         showLink && (
                             <Link to={moreUrl} onClick={e => e.stopPropagation()}>
-                                <span className={classnames(styles.seeMore, {
-                                    [styles.darkText]: isLightColor
-                                })}>MORE</span>
+                                <span className={classnames(styles.seeMore, classes.seeMoreButton)}>MORE</span>
                             </Link>
                         )
                     }
@@ -71,10 +81,11 @@ ColorBox.propTypes = {
     name: PropTypes.string,
     moreUrl: PropTypes.string,
     showLink: PropTypes.bool,
+    classes: PropTypes.bool,
 };
 
 ColorBox.defaultProps = {
     showLink: true,
 };
 
-export default ColorBox;
+export default withStyles(inlineStyles)(ColorBox);
