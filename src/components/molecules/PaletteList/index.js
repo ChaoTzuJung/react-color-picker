@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import MiniPalette from 'components/atoms/MiniPalette';
 
@@ -22,8 +23,13 @@ const styles = {
     nav: {
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'center',
         width: '100%',
         color: 'white',
+        "& a": {
+            color: 'white',
+            textDecoration: 'underline',
+        }
     },
     palettes: {
         display: 'grid',
@@ -45,6 +51,7 @@ class PaletteList extends Component {
                 <div className={classes.container}>
                     <nav className={classes.nav}>
                         <h1>React Colors</h1>
+                        <Link to="/palette/new">Create Palette</Link>
                     </nav>
                     <div className={classes.palettes}>
                         {palettes.map(palette => (

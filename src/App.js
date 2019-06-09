@@ -6,6 +6,8 @@ import generatePalette from 'utils/colorHelper';
 import Palette from 'components/molecules/Palette';
 import PaletteList from 'components/molecules/PaletteList';
 import SingleColorPalette from 'components/molecules/SingleColorPalette';
+import NewPaletteForm from 'components/organisms/NewPaletteForm';
+
 
 
 class App extends Component {
@@ -19,6 +21,10 @@ class App extends Component {
         <Route
           exact path="/"
           render={routeProps => <PaletteList palettes={colorsConfig} {...routeProps} />}
+        />
+        <Route
+          exact path="/palette/new"
+          render={() => <NewPaletteForm  />}
         />
         <Route
           exact
