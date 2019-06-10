@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import classNames from "classnames";
+import { ChromePicker } from 'react-color';
 import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,7 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
-import { ChromePicker } from 'react-color';
+import DraggableColorBox from 'components/atoms/DraggableColorBox';
 
 const drawerWidth = 400;
 
@@ -55,6 +56,7 @@ const styles = theme => ({
     justifyContent: "flex-end"
   },
   content: {
+    height: "calc(100vh - 64px)", // subtract navbar default git aheight
     flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
@@ -64,7 +66,7 @@ const styles = theme => ({
     marginLeft: -drawerWidth
   },
   contentShift: {
-    transition: theme.transitions.create("margin", {
+      transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     }),
@@ -161,11 +163,9 @@ class NewPaletteForm extends Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          <ul>
-            {this.state.colors.map(color => (
-              <li key={color} style={{ backgroundColor: color }}>{color}</li>
-            ))}
-          </ul>
+          {this.state.colors.map(color => (
+            <DraggableColorBox key={color} color={color}/>
+          ))}
         </main>
       </div>
     );
