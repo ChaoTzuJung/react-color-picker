@@ -81,7 +81,7 @@ ColorBox.propTypes = {
     name: PropTypes.string,
     moreUrl: PropTypes.string,
     showLink: PropTypes.bool,
-    classes: PropTypes.bool,
+    classes: PropTypes.object,
 };
 
 ColorBox.defaultProps = {

@@ -122,6 +122,17 @@ class NewPaletteForm extends Component {
     this.setState({ newName: e.target.value});
   }
 
+  savePalette = () => {
+    let newPaletteName = 'Test Palette Name';
+    const newPalette = {
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, '-'),
+      colors: this.state.colors,
+    }
+    this.props.savePalette(newPalette);
+    this.props.history.push('/');
+  }
+
   render() {
     const { classes } = this.props;
     const { open, currentColor, newName } = this.state;
@@ -147,6 +158,7 @@ class NewPaletteForm extends Component {
             <Typography variant='h6' color='inherit' noWrap>
               Persistent drawer
             </Typography>
+            <Button variant='contained' color="primary" onClick={this.savePalette}>Save Palette</Button>
           </Toolbar>
         </AppBar>
         <Drawer
