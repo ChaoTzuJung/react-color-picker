@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, text, color } from '@storybook/addon-knobs/react';
+import { withKnobs, text, color, boolean } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 
 import ColorBox from 'components/atoms/ColorBox';
@@ -15,6 +15,8 @@ stories.add('__interactive', () => (
             <ColorBox 
                 background={color('color', '#F44336')} 
                 name={text('name', 'red')} 
+                moreUrl={text('moreUrl', '/palette/material-ui-colors/red')}
+                showLink={boolean('showLink', true)} 
             />
         </Router>
     </div>

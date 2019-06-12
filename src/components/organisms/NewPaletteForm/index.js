@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import classNames from "classnames";
+import PropTypes from 'prop-types';
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { withStyles } from "@material-ui/core/styles";
@@ -245,4 +246,12 @@ class NewPaletteForm extends Component {
     );
   }
 }
+
+NewPaletteForm.propTypes = {
+  classes: PropTypes.object,
+  history: PropTypes.func,
+  palettes: PropTypes.array,
+  savePalette: PropTypes.func,
+};
+
 export default withStyles(styles, { withTheme: true })(NewPaletteForm);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs, object } from '@storybook/addon-knobs/react';
+import { withKnobs, text } from '@storybook/addon-knobs/react';
 import { storiesOf } from '@storybook/react';
 import colorsConfig from 'utils/colorsConfig';
 import generatePalette from 'utils/colorHelper';
@@ -16,7 +16,8 @@ const palette = generatePalette(colorsConfig[4])
 stories.add('__interactive', () => (
     <Router>
         <PaletteFooter
-            palette={object('palette', palette)}
+            paletteName={text('paletteName', 'Material UI Colors')}
+            emoji={text('emoji', '🎨')}
         />
     </Router>
 ));

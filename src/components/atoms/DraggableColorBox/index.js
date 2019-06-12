@@ -49,13 +49,15 @@ const DraggableColorBox = ({ color, name, classes, handleClick }) => {
 }
 
 DraggableColorBox.propTypes = {
-    color: PropTypes.string,
     classes: PropTypes.object,
+    color: PropTypes.string,
+    name: PropTypes.string,
     handleClick: PropTypes.func,
 };
 
 DraggableColorBox.defaultProps = {
     color: 'teal',
+    name: 'teal',
 };
 
 export default withStyles(styles)(DraggableColorBox)
