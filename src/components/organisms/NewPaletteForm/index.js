@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { withStyles } from "@material-ui/core/styles";
+import { arrayMove } from 'react-sortable-hoc';
 
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,7 +16,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
-import DraggableColorBox from 'components/atoms/DraggableColorBox';
+import DraggableColorList from 'components/molecules/DraggableColorList';
 
 const drawerWidth = 400;
 
@@ -83,7 +84,7 @@ class NewPaletteForm extends Component {
     this.state = {
       currentColor: 'teal',
       open: false,
-      colors: [{ name: 'blue', color: 'blue' }],
+      colors: [],
       newColorName: '',
       newPaletteName: '',
     };
@@ -143,9 +144,17 @@ class NewPaletteForm extends Component {
     })
   }
 
+  // 儲存 drag 後的狀態
+  onSortEnd = ({oldIndex, newIndex}) => {
+    // setSate 用 arraow function 參數是 state 可以用 destructuring 取出 state
+    this.setState(({ colors }) => ({
+      colors: arrayMove(colors, oldIndex, newIndex),
+    }));
+  };
+
   render() {
     const { classes } = this.props;
-    const { open, currentColor, newColorName, newPaletteName } = this.state;
+    const { open, currentColor, newColorName, newPaletteName, colors } = this.state;
 
     return (
       <div className={classes.root}>
@@ -233,14 +242,12 @@ class NewPaletteForm extends Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          {this.state.colors.map(color => (
-            <DraggableColorBox 
-              key={color.color}
-              color={color.color}
-              name={color.name}
-              handleClick={() => this.removeColor(color.name)}
-            />
-          ))}
+          <DraggableColorList
+            colors={colors}
+            removeColor={this.removeColor}
+            axis="xy"
+            onSortEnd={this.onSortEnd}
+          />
         </main>
       </div>
     );
@@ -249,7 +256,7 @@ class NewPaletteForm extends Component {
 
 NewPaletteForm.propTypes = {
   classes: PropTypes.object,
-  history: PropTypes.func,
+  history: PropTypes.object,
   palettes: PropTypes.array,
   savePalette: PropTypes.func,
 };

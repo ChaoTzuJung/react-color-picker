@@ -14,6 +14,7 @@ stories.addDecorator(withKnobs);
 stories.add('__interactive', () => (
     <NewPaletteForm
         palettes={object('palettes', colorsConfig)}
+        color={object('color', colorsConfig)}
         savePalette={action('savePalette')}
     />
 ));
