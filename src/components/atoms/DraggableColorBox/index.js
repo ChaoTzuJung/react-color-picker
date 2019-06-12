@@ -37,24 +37,25 @@ const styles = {
     }
 };
 
-const DraggableColorBox = ({ color, name, classes }) => {
+const DraggableColorBox = ({ color, name, classes, handleClick }) => {
     return (
         <div className={classes.root} style={{ backgroundColor: color }}>
             <div className={classes.boxContent}>
                 <span>{name}</span>
-                <DeleteIcon className={classes.deleteIcon} />
+                <DeleteIcon className={classes.deleteIcon} onClick={handleClick}/>
             </div>
         </div>
     )
 }
 
-// DraggableColorBox.propTypes = {
-//     color: PropTypes.string,
-//     classes: PropTypes.string,
-// };
+DraggableColorBox.propTypes = {
+    color: PropTypes.string,
+    classes: PropTypes.object,
+    handleClick: PropTypes.func,
+};
 
-// DraggableColorBox.defaultProps = {
-//     color: 'teal',
-// };
+DraggableColorBox.defaultProps = {
+    color: 'teal',
+};
 
 export default withStyles(styles)(DraggableColorBox)
