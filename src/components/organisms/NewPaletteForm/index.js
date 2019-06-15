@@ -152,10 +152,22 @@ class NewPaletteForm extends Component {
     }));
   };
 
-  render() {
-    const { classes } = this.props;
-    const { open, currentColor, newColorName, newPaletteName, colors } = this.state;
+  clearColors = () => {
+    this.setState({ colors: [] })
+  }
 
+  addRandomColor = () => {
+    // pick ramdom color from exist palette
+    const allColors =  this.props.palettes.map(palette => palette.colors).flat();
+    const randIndex = Math.floor(Math.random() * allColors.length);
+    const randomColor = allColors[randIndex];
+    this.setState({ colors: [...this.state.colors, randomColor] })
+  }
+
+  render() {
+    const { classes, maxColors } = this.props;
+    const { open, currentColor, newColorName, newPaletteName, colors } = this.state;
+    const paletteIsFull = colors.length >= maxColors; 
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -210,8 +222,15 @@ class NewPaletteForm extends Component {
           <Divider />
           <Typography variant='h4'>Design Your Palette</Typography>
           <div>
-            <Button variant='contained' color="secondary">Clear Palette</Button>
-            <Button variant='contained' color="primary">Random Palette</Button>
+            <Button variant='contained' color="secondary" onClick={this.clearColors}>Clear Palette</Button>
+            <Button 
+              variant='contained'
+              color="primary"
+              disabled={paletteIsFull}
+              onClick={this.addRandomColor}
+            >
+              Random Palette
+            </Button>
           </div>
           <ChromePicker color={currentColor} onChangeComplete={this.updateCurrentColor} />
           <ValidatorForm onSubmit={this.addNewColor} ref='form'>
@@ -230,9 +249,10 @@ class NewPaletteForm extends Component {
               variant='contained'
               type="submit"
               color="primary"
-              style={{ backgroundColor: currentColor }}
+              disabled={paletteIsFull}
+              style={{ backgroundColor: paletteIsFull ? 'grey' : currentColor }}
             >
-            Add Color
+            {paletteIsFull ? 'Palette Full' : '  Add Color'}
           </Button>
           </ValidatorForm>
         </Drawer>
@@ -259,6 +279,11 @@ NewPaletteForm.propTypes = {
   history: PropTypes.object,
   palettes: PropTypes.array,
   savePalette: PropTypes.func,
+  maxColors: PropTypes.number,
+};
+
+NewPaletteForm.defaultProps = {
+  maxColors: 20,
 };
 
 export default withStyles(styles, { withTheme: true })(NewPaletteForm);
