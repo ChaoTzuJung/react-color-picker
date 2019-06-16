@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import classNames from "classnames";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import { ValidatorForm } from 'react-material-ui-form-validator';
 import { withStyles } from "@material-ui/core/styles";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -16,11 +16,17 @@ import Button from "@material-ui/core/Button";
 const drawerWidth = 400;
 
 const styles = theme => ({
+    root: {
+        display: "flex"
+    },
     appBar: {
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen
-        })
+        }),
+        flexDirection: "row",
+        justifyContent: "space-between",
+        height: "64px",
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -37,6 +43,9 @@ const styles = theme => ({
     hide: {
         display: "none"
     },
+    navBtns: {
+
+    }
 });
 
 class PaletteFormNav extends Component {
@@ -61,7 +70,7 @@ class PaletteFormNav extends Component {
         const { classes, open, handleDrawerOpen, savePalette } = this.props;
         const { newPaletteName } = this.state;
         return (
-            <Fragment>
+            <div className={classes.root}>
                 <CssBaseline />
                 <AppBar
                     position='fixed'
@@ -79,28 +88,32 @@ class PaletteFormNav extends Component {
                     <MenuIcon />
                     </IconButton>
                     <Typography variant='h6' color='inherit' noWrap>
-                        Persistent drawer
+                        Create A palette
                     </Typography>
-                    <ValidatorForm onSubmit={() => savePalette(newPaletteName)} ref='form'>
-                        <TextValidator
-                            value={newPaletteName}
-                            label="Palette Name"
-                            name="newPaletteName"
-                            onChange={this.handleChange}
-                            validators={["required", "isPaletteNameUnique"]}
-                            errorMessages={[
-                                "Enter a palette name",
-                                "Palette name must be unique",
-                            ]}
-                        />
-                        <Button variant='contained' color="primary" type="submit">Save Palette</Button>
-                        <Link to = '/'>
-                            <Button  variant='contained' color="secondary">Go Back</Button>
-                        </Link>
-                    </ValidatorForm>
                 </Toolbar>
+                <div className={classes.navBtns}>
+                    {/*
+                        <ValidatorForm onSubmit={() => savePalette(newPaletteName)} ref='form'>
+                            <TextValidator
+                                value={newPaletteName}
+                                label="Palette Name"
+                                name="newPaletteName"
+                                onChange={this.handleChange}
+                                validators={["required", "isPaletteNameUnique"]}
+                                errorMessages={[
+                                    "Enter a palette name",
+                                    "Palette name must be unique",
+                                ]}
+                            />
+                            <Button variant='contained' color="primary" type="submit">Save Palette</Button>
+                        </ValidatorForm>
+                    */}
+                    <Link to = '/'>
+                        <Button  variant='contained' color="secondary">Go Back</Button>
+                    </Link>
+                </div>
                 </AppBar>
-            </Fragment>
+            </div>
         )
     }
 }
