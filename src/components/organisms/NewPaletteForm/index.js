@@ -12,8 +12,8 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 
 import DraggableColorList from 'components/molecules/DraggableColorList';
-import PaletteFormNav from 'components/molecules/PaletteFormNav'
-import ColorPickerForm from 'components/molecules/ColorPickerForm'
+import PaletteFormNav from 'components/molecules/PaletteFormNav';
+import ColorPickerForm from 'components/molecules/ColorPickerForm';
 
 const drawerWidth = 400;
 

@@ -13,6 +13,8 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 
+import PaletteMetaForm  from 'components/molecules/PaletteMetaForm';
+
 const drawerWidth = 400;
 
 const styles = theme => ({
@@ -49,26 +51,13 @@ const styles = theme => ({
 });
 
 class PaletteFormNav extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            newPaletteName: '',
-        };
-    }
-
-    componentDidMount() {
-        ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
-            this.props.palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase())
-        );
-    }
 
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value});
     }
 
     render() {
-        const { classes, open, handleDrawerOpen, savePalette } = this.props;
-        const { newPaletteName } = this.state;
+        const { classes, open, handleDrawerOpen, palettes, savePalette } = this.props;
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -92,22 +81,7 @@ class PaletteFormNav extends Component {
                     </Typography>
                 </Toolbar>
                 <div className={classes.navBtns}>
-                    {/*
-                        <ValidatorForm onSubmit={() => savePalette(newPaletteName)} ref='form'>
-                            <TextValidator
-                                value={newPaletteName}
-                                label="Palette Name"
-                                name="newPaletteName"
-                                onChange={this.handleChange}
-                                validators={["required", "isPaletteNameUnique"]}
-                                errorMessages={[
-                                    "Enter a palette name",
-                                    "Palette name must be unique",
-                                ]}
-                            />
-                            <Button variant='contained' color="primary" type="submit">Save Palette</Button>
-                        </ValidatorForm>
-                    */}
+                    <PaletteMetaForm palettes={palettes} savePalette={savePalette} />
                     <Link to = '/'>
                         <Button  variant='contained' color="secondary">Go Back</Button>
                     </Link>
@@ -130,4 +104,4 @@ PaletteFormNav.defaultProps = {
     open: true,
 };
 
-export default  withStyles(styles, { withTheme: true })(PaletteFormNav);
+export default withStyles(styles, { withTheme: true })(PaletteFormNav);
