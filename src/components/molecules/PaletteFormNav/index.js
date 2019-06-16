@@ -16,9 +16,6 @@ import Button from "@material-ui/core/Button";
 const drawerWidth = 400;
 
 const styles = theme => ({
-    root: {
-        display: "flex"
-    },
     appBar: {
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
