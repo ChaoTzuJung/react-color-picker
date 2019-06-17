@@ -71,6 +71,10 @@ class PaletteFormNav extends Component {
         this.setState({ dialogShow: true});
     }
 
+    hideDialog = () => {
+        this.setState({ dialogShow: false});
+    }
+
     render() {
         const { classes, open, handleDrawerOpen, palettes, savePalette } = this.props;
         const { dialogShow } = this.state;
@@ -108,7 +112,11 @@ class PaletteFormNav extends Component {
                 </div>
                 </AppBar>
                 {dialogShow && (
-                    <PaletteMetaForm palettes={palettes} savePalette={savePalette} />
+                    <PaletteMetaForm 
+                        palettes={palettes}
+                        savePalette={savePalette}
+                        hideDialog={this.hideDialog}
+                    />
                 )}
             </div>
         )

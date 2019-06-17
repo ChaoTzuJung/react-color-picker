@@ -9,6 +9,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css'
+
 class PaletteMetaForm extends Component {
     constructor(props) {
         super(props);
@@ -38,15 +41,16 @@ class PaletteMetaForm extends Component {
 
     render() {
         const { open, newPaletteName } = this.state;
-        const { savePalette } = this.props;
+        const { savePalette, hideDialog } = this.props;
         return (
-            <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={open} onClose={hideDialog} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
                 <ValidatorForm onSubmit={() => savePalette(newPaletteName)} ref='form'>
                     <DialogContent>
                         <DialogContentText>
                             Please enter a name for your new beautiful palette. Make sure it's unique!
                         </DialogContentText>
+                        <Picker />
                         <TextValidator
                             value={newPaletteName}
                             label="Palette Name"
@@ -62,7 +66,7 @@ class PaletteMetaForm extends Component {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={hideDialog} color="primary">
                             Cancel
                         </Button>
                         <Button variant='contained' color="primary" type="submit">
@@ -78,7 +82,8 @@ class PaletteMetaForm extends Component {
 
 PaletteMetaForm.propTypes = {
     savePalette: PropTypes.func,
-    palettes: PropTypes.array
+    palettes: PropTypes.array,
+    hideDialog: PropTypes.func,
 };
 
 export default PaletteMetaForm;
