@@ -28,6 +28,7 @@ const styles = theme => ({
         }),
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems: "center",
         height: "64px",
     },
     appBarShift: {
@@ -46,18 +47,33 @@ const styles = theme => ({
         display: "none"
     },
     navBtns: {
-
+        marginRight: "16px"
+    },
+    button: {
+        margin: "0 8px"
     }
 });
 
 class PaletteFormNav extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            dialogShow: false,
+            newPaletteName: '',
+        };
+    }
 
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value});
     }
 
+    showDialog = () => {
+        this.setState({ dialogShow: true});
+    }
+
     render() {
         const { classes, open, handleDrawerOpen, palettes, savePalette } = this.props;
+        const { dialogShow } = this.state;
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -81,12 +97,19 @@ class PaletteFormNav extends Component {
                     </Typography>
                 </Toolbar>
                 <div className={classes.navBtns}>
-                    <PaletteMetaForm palettes={palettes} savePalette={savePalette} />
                     <Link to = '/'>
-                        <Button  variant='contained' color="secondary">Go Back</Button>
+                        <Button variant='contained' color="secondary" className={classes.button}>
+                            Go Back
+                        </Button>
                     </Link>
+                    <Button variant="contained" color="secondary" onClick={this.showDialog} className={classes.button}>
+                        Save
+                    </Button>
                 </div>
                 </AppBar>
+                {dialogShow && (
+                    <PaletteMetaForm palettes={palettes} savePalette={savePalette} />
+                )}
             </div>
         )
     }
