@@ -13,9 +13,10 @@ import NewPaletteForm from 'components/organisms/NewPaletteForm';
 class App extends Component {
   constructor(props) {
     super(props);
+    const savePalettes = JSON.parse(window.localStorage.getItem('palettes'));
     this.state = {
       // colorsConfig 是靜態資料 無法變動，所以把它放到state處理
-      palettes: colorsConfig
+      palettes: savePalettes || colorsConfig
     }
   }
   findPalette = id => {
@@ -23,7 +24,15 @@ class App extends Component {
   }
 
   savePalette = newPalette => {
-    this.setState({ palettes: [...this.state.palettes, newPalette] })
+    this.setState(
+      { palettes: [...this.state.palettes, newPalette] },
+      this.syncLocalStorage
+    )
+  }
+
+  syncLocalStorage= () => {
+    // Save palette to local storage
+    window.localStorage.setItem('palettes', JSON.stringify(this.state.palettes))
   }
 
   render() {
