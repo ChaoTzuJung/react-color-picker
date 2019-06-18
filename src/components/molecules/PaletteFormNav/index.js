@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classNames from "classnames";
+import classnames from "classnames";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from "@material-ui/core/styles";
@@ -81,8 +81,9 @@ class PaletteFormNav extends Component {
             <div className={classes.root}>
                 <CssBaseline />
                 <AppBar
+                    color='default'
                     position='fixed'
-                    className={classNames(classes.appBar, {
+                    className={classnames(classes.appBar, {
                         [classes.appBarShift]: open
                     })}
                 >
@@ -91,7 +92,7 @@ class PaletteFormNav extends Component {
                         color='inherit'
                         aria-label='Open drawer'
                         onClick={handleDrawerOpen}
-                        className={classNames(classes.menuButton, open && classes.hide)}
+                        className={classnames(classes.menuButton, open && classes.hide)}
                     >
                     <MenuIcon />
                     </IconButton>
@@ -105,7 +106,7 @@ class PaletteFormNav extends Component {
                             Go Back
                         </Button>
                     </Link>
-                    <Button variant="contained" color="secondary" onClick={this.showDialog} className={classes.button}>
+                    <Button variant="contained" color="primary" onClick={this.showDialog} className={classes.button}>
                         Save
                     </Button>
                 </div>

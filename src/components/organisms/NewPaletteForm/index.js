@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classNames from "classnames";
+import classnames from "classnames";
 import PropTypes from 'prop-types';
 import { withStyles } from "@material-ui/core/styles";
 import { arrayMove } from 'react-sortable-hoc';
@@ -33,14 +33,15 @@ const styles = theme => ({
   drawerHeader: {
     display: "flex",
     alignItems: "center",
+    width: "100%",
     padding: "0 8px",
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   content: {
     height: "calc(100vh - 64px)", // subtract navbar default git aheight
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: 0,
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -189,7 +190,7 @@ class NewPaletteForm extends Component {
           </div>
         </Drawer>
         <main
-          className={classNames(classes.content, {
+          className={classnames(classes.content, {
             [classes.contentShift]: open
           })}
         >

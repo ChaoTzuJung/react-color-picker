@@ -8,11 +8,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const styles = {
     root: {
         display: 'inline-block',
+        float: "left",
         position: 'relative',
         width: '20%',
         height: '25%',
         margin: '0 auto',
-        marginBottom: '-3.5px',
         cursor: 'pointer',
     },
     boxContent : {
@@ -27,7 +27,6 @@ const styles = {
         letterSpacing: '1px',
         textTransform: 'uppercase',
         fontSize: '12px',
-        // marginBottom: '-3.5px',
         "&:hover svg": {
             color: 'white',
             transform: 'scale(1.5)',
