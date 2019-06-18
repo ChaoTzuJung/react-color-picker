@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { ValidatorForm } from 'react-material-ui-form-validator';
 import { withStyles } from "@material-ui/core/styles";
 
 import CssBaseline from "@material-ui/core/CssBaseline";

@@ -13,7 +13,7 @@ stories.addDecorator(withKnobs);
 stories.add('__interactive', () => (
     <Router>
         <PaletteMetaForm
-            savePalette={action('savePalette')}
+            hideDialog={action('hideDialog')}
         />
     </Router>
 ));
