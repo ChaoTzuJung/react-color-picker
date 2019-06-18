@@ -35,13 +35,24 @@ class PaletteMetaForm extends Component {
         this.setState({ stage: 'emoji' });
     }
 
+    submitNewPalette = emoji => {
+        // 顯示你點擊的 emoji
+        console.log(emoji.native)
+        const newPalette = {
+            paletteName: this.state.newPaletteName,
+            emoji: emoji.native
+        }
+        this.props.savePalette(newPalette);
+    }
+
     render() {
         const { newPaletteName, stage } = this.state;
         const { hideDialog } = this.props;
         return (
             <div>
-                <Dialog open={stage === "emoji"}>
-                    <Picker />
+                <Dialog open={stage === "emoji"} onClose={hideDialog}>
+                    <DialogTitle id="form-dialog-title">Choose a Emoji</DialogTitle>
+                    <Picker title="Pick a Palette Emoji" onSelect={this.submitNewPalette} />
                 </Dialog>
                 <Dialog open={stage === "form"} onClose={hideDialog} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
@@ -83,6 +94,7 @@ class PaletteMetaForm extends Component {
 PaletteMetaForm.propTypes = {
     palettes: PropTypes.array,
     hideDialog: PropTypes.func,
+    savePalette: PropTypes.func,
 };
 
 export default PaletteMetaForm;
