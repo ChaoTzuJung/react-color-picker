@@ -30,6 +30,14 @@ class App extends Component {
     )
   }
 
+  deletePalette = id => {
+    this.setState(
+      // 要使用 old state & callback
+      prevState => ({ palettes: prevState.palettes.filter(palette => palette.id !== id) }),
+      this.syncLocalStorage
+    )
+  }
+
   syncLocalStorage= () => {
     // Save palette to local storage
     window.localStorage.setItem('palettes', JSON.stringify(this.state.palettes))
@@ -41,7 +49,7 @@ class App extends Component {
       <Switch>
         <Route
           exact path="/"
-          render={routeProps => <PaletteList palettes={palettes} {...routeProps} />}
+          render={routeProps => <PaletteList palettes={palettes} deletePalette={this.deletePalette} {...routeProps} />}
         />
         <Route
           exact path="/palette/new"
