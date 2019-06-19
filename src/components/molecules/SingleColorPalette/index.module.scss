@@ -7,8 +7,21 @@
     & > .paletteColors {
         height: 90%;
 
+        // 內頁的 colorBox元件height要是50%
         & > :nth-child(n) {
             height: 50%;
+
+            @media screen and (max-width: 1199.98px) {
+                height: 33.3333%;
+            }
+
+            @media screen and (max-width: 991.98px) {
+                height: 20%;
+            }
+
+            @media screen and (max-width: 575.98px) {
+                height: 10%;
+            }
         }
 
         & > .goBack {
@@ -16,6 +29,18 @@
             float: left;
             width: 20%;
             background-color: black;
+
+            @media screen and (max-width: 1199.98px) {
+                width: 25%;
+            }
+
+            @media screen and (max-width: 991.98px) {
+                width: 50%;
+            }
+
+            @media screen and (max-width: 575.98px) {
+                width: 100%;
+            }
 
             & > .backButton {
                 display: inline-block;

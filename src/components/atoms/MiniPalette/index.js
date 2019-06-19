@@ -16,9 +16,6 @@ const styles = {
             opacity: 1,
         }
     },
-    delete: {
-
-    },
     deleteIcon: {
         color: "white",
         backgroundColor: "#ed3d30",
@@ -66,9 +63,6 @@ const styles = {
 
 // classes props for HOC withStyles
 class MiniPalette extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     deletePalette = e => {
         e.stopPropagation();
