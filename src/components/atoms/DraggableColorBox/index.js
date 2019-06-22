@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import { SortableElement } from 'react-sortable-hoc';
+import sizes from 'utils/media';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -14,6 +15,18 @@ const styles = {
         height: '25%',
         margin: '0 auto',
         cursor: 'pointer',
+        [sizes.down("lg")]: {
+            width: "25%",
+            height: '20%',
+        },
+        [sizes.down("md")]: {
+            width: "50%",
+            height: '10%',
+        },
+        [sizes.down("sm")]: {
+            width: "100%",
+            height: '5%',
+        },
     },
     boxContent : {
         display: 'flex',
@@ -29,7 +42,7 @@ const styles = {
         fontSize: '12px',
         "&:hover svg": {
             color: 'white',
-            transform: 'scale(1.5)',
+            transform: 'scale(1.3)',
         }
     },
     deleteIcon: {

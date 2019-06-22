@@ -18,6 +18,10 @@
             text-decoration: none;
             color: black;
         }
+    
+        @media screen and (max-width: 575.98px) {
+            display: none;
+        }
     }
 
     & > .sliderContainer {
@@ -43,6 +47,10 @@
                 width: 13px;
                 margin-top: -3px;
                 margin-left: -7px;
+            }
+
+            @media screen and (max-width: 991.98px) {
+                width: 150px;
             }
         }
     }

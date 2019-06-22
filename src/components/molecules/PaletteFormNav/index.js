@@ -3,6 +3,7 @@ import classnames from "classnames";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from "@material-ui/core/styles";
+import sizes from 'utils/media';
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -46,10 +47,17 @@ const styles = theme => ({
         display: "none"
     },
     navBtns: {
-        marginRight: "16px"
+        marginRight: "16px",
+        [sizes.down("xs")]: {
+            marginRight: "8px",
+        },
     },
     button: {
-        margin: "0 8px"
+        margin: "0 8px",
+        [sizes.down("xs")]: {
+            margin: "3px",
+            padding: "5px",
+        },
     }
 });
 
