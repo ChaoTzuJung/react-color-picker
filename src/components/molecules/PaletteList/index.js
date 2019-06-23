@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import MiniPalette from 'components/atoms/MiniPalette';
+import sizes from 'utils/media';
 
 const styles = {
     paletteList: {
@@ -19,6 +20,12 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'flex-start',
         width: '50%',
+        [sizes.down("lg")]: {
+            width: '80%',
+        },
+        [sizes.down("xs")]: {
+            width: '75%',
+        },
     },
     nav: {
         display: 'flex',
@@ -35,7 +42,14 @@ const styles = {
         display: 'grid',
         width: '100%',
         gridTemplateColumns: 'repeat(3, 30%)',
-        gridGap: '5%' 
+        gridGap: '40px',
+        [sizes.down("md")]: {
+            gridTemplateColumns: 'repeat(2, 50%)',
+        },
+        [sizes.down("xs")]: {
+            gridTemplateColumns: 'repeat(1, 100%)',
+            gridGap: '16px',
+        }
     },
 };
 
