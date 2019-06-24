@@ -130,7 +130,7 @@ class PaletteList extends Component {
                                     key={palette.id}
                                     id={palette.id}
                                     {...palette}
-                                    goToPalette={() => this.goToPalette(palette.id)}
+                                    goToPalette={this.goToPalette}
                                     openDialog={this.openDialog}
                                 />
                             </CSSTransition>

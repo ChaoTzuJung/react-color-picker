@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -62,15 +62,20 @@ const styles = {
 };
 
 // classes props for HOC withStyles
-class MiniPalette extends Component {
+class MiniPalette extends PureComponent {
 
     deletePalette = e => {
         e.stopPropagation();
         this.props.openDialog(this.props.id);
     }
 
+    handleClick = () => {
+        this.props.goToPalette(this.props.id);
+    }
+
     render() {
-        const { classes, paletteName, emoji, colors, goToPalette } = this.props;
+        const { classes, paletteName, emoji, colors, goToPalette, id } = this.props;
+        console.log("Re-render: ", paletteName)
         const miniColorBoxes = colors.map(color => (
             <div
                 className={classes.miniColor}
@@ -79,7 +84,7 @@ class MiniPalette extends Component {
             />
         ));
         return (
-            <div className={classes.miniPalette} onClick={goToPalette}>
+            <div className={classes.miniPalette} onClick={this.handleClick}>
                 <DeleteIcon className={classes.deleteIcon} onClick={this.deletePalette} />
                 <div className={classes.colors}>
                     {miniColorBoxes}
