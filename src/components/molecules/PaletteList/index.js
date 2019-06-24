@@ -115,7 +115,7 @@ class PaletteList extends Component {
 
     render() {
         const { palettes, classes } = this.props;
-        const { openDeleteDialog, deletingId } = this.state;
+        const { openDeleteDialog } = this.state;
         return (
             <div className={classes.paletteList}>
                 <div className={classes.container}>
@@ -173,6 +173,7 @@ PaletteList.propTypes = {
     palettes: PropTypes.array,
     classes:  PropTypes.object,
     deletePalette: PropTypes.func,
+    deletingId: PropTypes.string,
 };
 
 export default withStyles(styles)(PaletteList);
