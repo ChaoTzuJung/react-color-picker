@@ -66,7 +66,7 @@ class MiniPalette extends Component {
 
     deletePalette = e => {
         e.stopPropagation();
-        this.props.handleDelete(this.props.id);
+        this.props.openDialog(this.props.id);
     }
 
     render() {
@@ -99,7 +99,7 @@ MiniPalette.propTypes = {
     emoji: PropTypes.string,
     colors: PropTypes.array,
     goToPalette: PropTypes.func,
-    handleDelete: PropTypes.func,
+    openDialog: PropTypes.func,
     id: PropTypes.string,
 };
 

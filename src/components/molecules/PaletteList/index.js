@@ -4,10 +4,22 @@ import { Link } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { withStyles } from '@material-ui/styles';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import CheckIcon from "@material-ui/icons/Check";
+import CloseIcon from "@material-ui/icons/Close";
+import blue from "@material-ui/core/colors/blue";
+import red from "@material-ui/core/colors/red";
 import MiniPalette from 'components/atoms/MiniPalette';
 
 import sizes from 'utils/media';
 import BgImage  from 'images/background.svg';
+
 
 const styles = {
     "@global": {
@@ -77,12 +89,33 @@ const styles = {
 };
 
 class PaletteList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            openDeleteDialog: false,
+            deletingId: ""
+        };
+    }
     goToPalette = id => {
         this.props.history.push(`/palette/${id}`)
     }
 
+    openDialog = id => {
+        this.setState({ openDeleteDialog: true, deletingId: id })
+    }
+
+    closeDialog = () => {
+        this.setState({ openDeleteDialog: false, deletingId: '' })
+    }
+
+    handleDelete = () => {
+        this.props.deletePalette(this.state.deletingId);
+        this.closeDialog();
+    }
+
     render() {
-        const { palettes, classes, deletePalette } = this.props;
+        const { palettes, classes } = this.props;
+        const { openDeleteDialog, deletingId } = this.state;
         return (
             <div className={classes.paletteList}>
                 <div className={classes.container}>
@@ -98,12 +131,39 @@ class PaletteList extends Component {
                                     id={palette.id}
                                     {...palette}
                                     goToPalette={() => this.goToPalette(palette.id)}
-                                    handleDelete={deletePalette}
+                                    openDialog={this.openDialog}
                                 />
                             </CSSTransition>
                         ))}
                     </TransitionGroup>
                 </div>
+                <Dialog
+                    open={openDeleteDialog}
+                    onClose={this.closeDialog}
+                    aria-labelledby="simple-dialog-title"
+                >
+                    <DialogTitle id="simple-dialog-title">
+                        Delete This Palette?
+                    </DialogTitle>
+                    <List>
+                        <ListItem button onClick={this.handleDelete}>
+                            <ListItemAvatar>
+                                <Avatar style={{ backgroundColor: blue[100], color: blue[600] }}>
+                                    <CheckIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary="Delete" />
+                        </ListItem>
+                        <ListItem button onClick={this.closeDialog}>
+                            <ListItemAvatar>
+                            <Avatar style={{ backgroundColor: red[100], color: red[600] }}>
+                                <CloseIcon />
+                            </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary="Cancel" />
+                        </ListItem>
+                    </List>
+                </Dialog>
             </div>
         )
     }
@@ -112,6 +172,7 @@ class PaletteList extends Component {
 PaletteList.propTypes = {
     palettes: PropTypes.array,
     classes:  PropTypes.object,
+    deletePalette: PropTypes.func,
 };
 
 export default withStyles(styles)(PaletteList);
