@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import classnames from "classnames";
 import PropTypes from 'prop-types';
-import { withStyles } from "@material-ui/core/styles";
 import { arrayMove } from 'react-sortable-hoc';
 
+import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -14,6 +14,8 @@ import Button from "@material-ui/core/Button";
 import DraggableColorList from 'components/molecules/DraggableColorList';
 import PaletteFormNav from 'components/molecules/PaletteFormNav';
 import ColorPickerForm from 'components/molecules/ColorPickerForm';
+
+import colorsConfig from 'utils/colorsConfig';
 
 const drawerWidth = 400;
 
@@ -76,7 +78,7 @@ class NewPaletteForm extends Component {
     super(props);
     this.state = {
       open: false,
-      colors: this.props.palettes[0].colors,
+      colors: colorsConfig[0].colors
     };
   }
 
