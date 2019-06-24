@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 import { withStyles } from '@material-ui/styles';
 import MiniPalette from 'components/atoms/MiniPalette';
+
 import sizes from 'utils/media';
 import BgImage  from 'images/background.svg';
 
 const styles = {
+    "@global": {
+        ".fade-exit": {
+            opacity: 1
+        },
+        ".fade-exit-active": {
+            opacity: 0,
+            transition: "opacity 500ms ease-out",
+        }
+    },
     paletteList: {
         display: 'flex',
         justifyContent: 'center',
@@ -78,17 +90,19 @@ class PaletteList extends Component {
                         <h1 className={classes.heading}>React Colors</h1>
                         <Link to="/palette/new">Create Palette</Link>
                     </nav>
-                    <div className={classes.palettes}>
+                    <TransitionGroup className={classes.palettes}>
                         {palettes.map(palette => (
-                            <MiniPalette 
-                                key={palette.id}
-                                id={palette.id}
-                                {...palette}
-                                goToPalette={() => this.goToPalette(palette.id)}
-                                handleDelete={deletePalette}
-                            />
+                            <CSSTransition classNames='fade' key={palette.id} timeout={500} >
+                                <MiniPalette
+                                    key={palette.id}
+                                    id={palette.id}
+                                    {...palette}
+                                    goToPalette={() => this.goToPalette(palette.id)}
+                                    handleDelete={deletePalette}
+                                />
+                            </CSSTransition>
                         ))}
-                    </div>
+                    </TransitionGroup>
                 </div>
             </div>
         )
