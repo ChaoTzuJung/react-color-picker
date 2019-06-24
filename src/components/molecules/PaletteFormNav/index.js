@@ -15,7 +15,11 @@ import Button from "@material-ui/core/Button";
 
 import PaletteMetaForm  from 'components/molecules/PaletteMetaForm';
 
-const drawerWidth = 400;
+let drawerWidth = 360;
+
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    drawerWidth = window.screen.width;
+}
 
 const styles = theme => ({
     root: {
@@ -49,7 +53,7 @@ const styles = theme => ({
     navBtns: {
         marginRight: "16px",
         [sizes.down("xs")]: {
-            marginRight: "8px",
+            marginRight: 0,
         },
     },
     button: {

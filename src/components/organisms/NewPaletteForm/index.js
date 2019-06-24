@@ -16,8 +16,13 @@ import PaletteFormNav from 'components/molecules/PaletteFormNav';
 import ColorPickerForm from 'components/molecules/ColorPickerForm';
 
 import colorsConfig from 'utils/colorsConfig';
+import sizes from 'utils/media';
 
-const drawerWidth = 400;
+let drawerWidth = 360;
+
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  drawerWidth = window.screen.width;
+}
 
 const styles = theme => ({
   root: {
@@ -48,7 +53,7 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    marginLeft: -drawerWidth
+    marginLeft: -drawerWidth,
   },
   contentShift: {
       transition: theme.transitions.create("margin", {
@@ -67,9 +72,18 @@ const styles = theme => ({
   },
   buttons: {
     width: "100%",
+    [sizes.down("xs")]: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
   },
   button: {
     width: "50%",
+    [sizes.down("xs")]: {
+      width: "100%",
+    },
   },
 });
 

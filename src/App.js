@@ -23,7 +23,8 @@ class App extends Component {
     }
   }
   findPalette = id => {
-    return this.state.palettes.find(palette => palette.id === id);
+    const defaultPalette = colorsConfig[0];
+    return this.state.palettes.find(palette => palette.id === id) || defaultPalette;
   }
 
   savePalette = newPalette => {
